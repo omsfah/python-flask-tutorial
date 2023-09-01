@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home_page():
-    return render_template('dashboard.html')
+    return render_template('home.html')
 
 if __name__ == '__main__':
     app.run(debug=True) #tillater å kjøre "direkte" med debug mode (ved filendringer trenger man ikke restarte appen)
