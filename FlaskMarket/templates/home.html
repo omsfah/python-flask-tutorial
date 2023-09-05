@@ -18,7 +18,7 @@
     user-select: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 48em) {
     .bd-placeholder-img-lg {
       font-size: 3.5rem;
     }
@@ -29,7 +29,7 @@
     height: 3rem;
     background-color: rgba(0, 0, 0, .1);
     border: solid rgba(0, 0, 0, .15);
-    border-width: 1px 0;
+    border-width: 0.1em 0;
     box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
   }
 
@@ -85,6 +85,9 @@
 
     <!-- Custom styles for this template -->
     <link href="../static/cheatsheet.css" rel="stylesheet">
+    <script src="../static/jquery.min.js"></script>
+    <script src="../static/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/cheatsheet.js"></script>
   </head>
   <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
     <div class="container-fluid d-flex align-items-center">
@@ -94,15 +97,16 @@
       </h1>
     </div>
 </header>
+<body>
+
 <div class="bd-cheatsheet container-fluid bg-body">
   <section id="components">
-    <section id="components">
       <article class="my-3" id="buttons">
-        <div class=>
+
+        <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
         </div>
-  
         <div>
-          <div class="bd-example-snippet bd-code-snippet bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2"><div class="bd-example m-0 border-0">
+          <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2"><div class="bd-example m-0 border-0">
           <button type="button" class="btn btn-secondary">Primary</button>
           <button type="button" class="btn btn-secondary">Secondary</button>
           <button type="button" class="btn btn-secondary">Success</button>
@@ -110,6 +114,56 @@
           </div></div>
         </div>
       </article>
+
+      <div class="sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
+        <input class="form-control" id="myInput" type="text" placeholder="Søk...">
+        <br>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody id="myTable">
+            <tr>
+              <td>John</td>
+              <td>Doe</td>
+              <td>john@example.com</td>
+            </tr>
+            <tr>
+              <td>Mary</td>
+              <td>Moe</td>
+              <td>mary@mail.com</td>
+            </tr>
+            <tr>
+              <td>July</td>
+              <td>Dooley</td>
+              <td>july@greatstuff.com</td>
+            </tr>
+            <tr>
+              <td>Anja</td>
+              <td>Ravendale</td>
+              <td>a_r@test.com</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <script>
+      $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+          var value = $(this).val().toLowerCase();
+          $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
+      </script>
+      
   </section>
 </div>
+</body>
+
 </html>
