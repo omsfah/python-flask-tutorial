@@ -27,9 +27,11 @@
     <article class="my-3 bd-heading" id="buttons">
       <div class="container-fluid bg-body align-items">
         <section id="components">
-          <button type="button" class="btn btn-secondary" name="outside-button" id="outside-button">Sett status "inne" til "ute"</button>
-          <button type="button" class="btn btn-secondary" name="noshow-button" id="noshow-button">sett status "ute" til "annet"</button>
-          <button type="button" name="refresh-button" id="refresh-button" class="btn btn-secondary">Oppdater visning av data</button>
+          <form method="post" action="/">
+            <button type="submit" class="btn btn-secondary" name="outside-button" id="outside-button" value="1">Sett status "inne" til "ute"</button>
+            <button type="submit" class="btn btn-secondary" name="noshow-button" id="noshow-button" value="1">sett status "ute" til "annet"</button>
+            <button type="submit" class="btn btn-secondary" name="refresh-button" id="refresh-button" value="1">Oppdater visning av data</button>
+          </form>
         </section>
       </div>
     </article>
@@ -38,58 +40,64 @@
         <input class="form-control" id="myInput" type="text" placeholder="Søk...">
         <br>
       </div>
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>Fornavn</th>
-              <th>Etternavn</th>
-              <th>Delegatnummer</th>
-              <th>Status</th>
-              <th>E-post</th>
-              <th>RFID</th>
-              <th>Mobilnummer</th>
-              <th>Firma</th>
-              <th>Romnummer</th>
-            </tr>
-          </thead>
-          <tbody id="myTable">
-            <tr>
-              <td>Mikael</td>
-              <td>Skjevik</td>
-              <td>1</td>
-              <td>inne</td>
-              <td>Mikael@example.com</td>
-              <td>123456789012345</td>
-              <td>11112222</td>
-              <td>Industri energi</td>
-              <td>101</td>
-            </tr>
-            <tr>
-              <td>Alida</td>
-              <td>Domås</td>
-              <td>2</td>
-              <td>ute</td>
-              <td>alida@example.com</td>
-              <td>123456789123456</td>
-              <td>22223333</td>
-              <td>Industri energi</td>
-              <td>102</td>
-            </tr>
-            <tr>
-              <td>Arnfinn</td>
-              <td>Hansen</td>
-              <td>3</td>
-              <td>inne</td>
-              <td>arnfinn@example.com</td>
-              <td>123456789234567</td>
-              <td>33334444</td>
-              <td>Industri energi</td>
-              <td>107</td>
-            </tr>
-          </tbody>
-        </table>
-      <label class="form-label" for="customFile">CSV fil, med headers</label>
-      <input type="file" class="form-control" id="fileupload">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Fornavn</th>
+            <th>Etternavn</th>
+            <th>Delegatnummer</th>
+            <th>Status</th>
+            <th>E-post</th>
+            <th>RFID</th>
+            <th>Mobilnummer</th>
+            <th>Firma</th>
+            <th>Romnummer</th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+          <tr>
+            <td>Mikael</td>
+            <td>Skjevik</td>
+            <td>1</td>
+            <td>inne</td>
+            <td>Mikael@example.com</td>
+            <td>123456789012345</td>
+            <td>11112222</td>
+            <td>Industri energi</td>
+            <td>101</td>
+          </tr>
+          <tr>
+            <td>Alida</td>
+            <td>Domås</td>
+            <td>2</td>
+            <td>ute</td>
+            <td>alida@example.com</td>
+            <td>123456789123456</td>
+            <td>22223333</td>
+            <td>Industri energi</td>
+            <td>102</td>
+          </tr>
+          <tr>
+            <td>Arnfinn</td>
+            <td>Hansen</td>
+            <td>3</td>
+            <td>inne</td>
+            <td>arnfinn@example.com</td>
+            <td>123456789234567</td>
+            <td>33334444</td>
+            <td>Industri energi</td>
+            <td>107</td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+          <label class="form-label" for="customFile">CSV fil, med headers</label>
+          <input type="file" class="form-control" name="file">
+          <button type="submit" class="btn btn-secondary">Upload</button>
+        </form>
+      </div>
+
       <script>
         $(document).ready(function(){
           $("#myInput").on("keyup", function() {
